@@ -1,0 +1,496 @@
+{
+  "api": {
+    "name": "CapacitorHealthkitPlugin",
+    "slug": "capacitorhealthkitplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "requestAuthorization",
+        "signature": "(authOptions: AuthorizationQueryOptions) => Promise<void>",
+        "parameters": [
+          {
+            "name": "authOptions",
+            "docs": "These define which access we need. Possible Options include ['calories', 'stairs', 'activity', 'steps', 'distance', 'duration', 'weight'].",
+            "type": "AuthorizationQueryOptions"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "authOptions These define which access we need. Possible Options include ['calories', 'stairs', 'activity', 'steps', 'distance', 'duration', 'weight']."
+          }
+        ],
+        "docs": "This functions will open the iOS Screen to let users choose their permissions. Keep in mind as developers, if the access has been denied by the user we will have no way of knowing - the query results will instead just be empty arrays.",
+        "complexTypes": [
+          "AuthorizationQueryOptions"
+        ],
+        "slug": "requestauthorization"
+      },
+      {
+        "name": "queryHKitSampleType",
+        "signature": "<T>(queryOptions: SingleQueryOptions) => Promise<QueryOutput<T>>",
+        "parameters": [
+          {
+            "name": "queryOptions",
+            "docs": "defines the type of data and the timeframe which shall be queried, a limit can be set to reduce the number of results.",
+            "type": "SingleQueryOptions"
+          }
+        ],
+        "returns": "Promise<QueryOutput<T>>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "queryOptions defines the type of data and the timeframe which shall be queried, a limit can be set to reduce the number of results."
+          }
+        ],
+        "docs": "This defines a query to the Healthkit for a single type of data.",
+        "complexTypes": [
+          "QueryOutput",
+          "T",
+          "SingleQueryOptions"
+        ],
+        "slug": "queryhkitsampletype"
+      },
+      {
+        "name": "isAvailable",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "This functions resolves if HealthKitData is available it uses the native HKHealthStore.isHealthDataAvailable() funtion of the HealthKit .",
+        "complexTypes": [],
+        "slug": "isavailable"
+      },
+      {
+        "name": "multipleQueryHKitSampleType",
+        "signature": "(queryOptions: MultipleQueryOptions) => Promise<any>",
+        "parameters": [
+          {
+            "name": "queryOptions",
+            "docs": "defines the sample types which can be queried for",
+            "type": "MultipleQueryOptions"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "queryOptions defines the sample types which can be queried for"
+          }
+        ],
+        "docs": "This defines a query to the Healthkit for a single type of data. This function has not been tested.",
+        "complexTypes": [
+          "MultipleQueryOptions"
+        ],
+        "slug": "multiplequeryhkitsampletype"
+      },
+      {
+        "name": "isEditionAuthorized",
+        "signature": "(queryOptions: EditionQuery) => Promise<void>",
+        "parameters": [
+          {
+            "name": "queryOptions",
+            "docs": "defines the sampletype for which you need to check for writing permission.",
+            "type": "EditionQuery"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "queryOptions defines the sampletype for which you need to check for writing permission."
+          }
+        ],
+        "docs": "Checks if there is writing permission for one specific sample type. This function has not been tested.",
+        "complexTypes": [
+          "EditionQuery"
+        ],
+        "slug": "iseditionauthorized"
+      },
+      {
+        "name": "multipleIsEditionAuthorized",
+        "signature": "(queryOptions: MultipleEditionQuery) => Promise<void>",
+        "parameters": [
+          {
+            "name": "queryOptions",
+            "docs": "defines the sampletypes for which you need to check for writing permission.",
+            "type": "MultipleEditionQuery"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "queryOptions defines the sampletypes for which you need to check for writing permission."
+          }
+        ],
+        "docs": "Checks if there is writing permission for multiple sample types. This function has not been tested.",
+        "complexTypes": [
+          "MultipleEditionQuery"
+        ],
+        "slug": "multipleiseditionauthorized"
+      },
+      {
+        "name": "saveWeight",
+        "signature": "(weightData: WeightData) => Promise<SaveResult>",
+        "parameters": [
+          {
+            "name": "weightData",
+            "docs": "The weight data to save",
+            "type": "WeightData"
+          }
+        ],
+        "returns": "Promise<SaveResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "weightData The weight data to save"
+          }
+        ],
+        "docs": "Save weight data to HealthKit.",
+        "complexTypes": [
+          "SaveResult",
+          "WeightData"
+        ],
+        "slug": "saveweight"
+      },
+      {
+        "name": "saveHeight",
+        "signature": "(heightData: HeightData) => Promise<SaveResult>",
+        "parameters": [
+          {
+            "name": "heightData",
+            "docs": "The height data to save",
+            "type": "HeightData"
+          }
+        ],
+        "returns": "Promise<SaveResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "heightData The height data to save"
+          }
+        ],
+        "docs": "Save height data to HealthKit.",
+        "complexTypes": [
+          "SaveResult",
+          "HeightData"
+        ],
+        "slug": "saveheight"
+      },
+      {
+        "name": "saveActiveEnergyBurned",
+        "signature": "(energyData: EnergyData) => Promise<SaveResult>",
+        "parameters": [
+          {
+            "name": "energyData",
+            "docs": "The energy data to save",
+            "type": "EnergyData"
+          }
+        ],
+        "returns": "Promise<SaveResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "energyData The energy data to save"
+          }
+        ],
+        "docs": "Save active energy burned data to HealthKit.",
+        "complexTypes": [
+          "SaveResult",
+          "EnergyData"
+        ],
+        "slug": "saveactiveenergyburned"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "AuthorizationQueryOptions",
+      "slug": "authorizationqueryoptions",
+      "docs": "Used for authorization of reading and writing access.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "read",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string[]"
+        },
+        {
+          "name": "write",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string[]"
+        },
+        {
+          "name": "all",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string[]"
+        }
+      ]
+    },
+    {
+      "name": "QueryOutput",
+      "slug": "queryoutput",
+      "docs": "This interface is used for any results coming from HealthKit. It always has a count and the actual results.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "countReturn",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "resultData",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "T"
+          ],
+          "type": "T[]"
+        }
+      ]
+    },
+    {
+      "name": "SingleQueryOptions",
+      "slug": "singlequeryoptions",
+      "docs": "This extends the Basequeryoptions for a single sample type.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "sampleName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "MultipleQueryOptions",
+      "slug": "multiplequeryoptions",
+      "docs": "This extends the Basequeryoptions for a multiple sample types.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "sampleNames",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string[]"
+        }
+      ]
+    },
+    {
+      "name": "EditionQuery",
+      "slug": "editionquery",
+      "docs": "This is used for checking writing permissions.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "sampleName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "MultipleEditionQuery",
+      "slug": "multipleeditionquery",
+      "docs": "This is used for checking writing permissions.",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "sampleNames",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string[]"
+        }
+      ]
+    },
+    {
+      "name": "SaveResult",
+      "slug": "saveresult",
+      "docs": "Result of a save operation",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "success",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean"
+        },
+        {
+          "name": "uuid",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "error",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "WeightData",
+      "slug": "weightdata",
+      "docs": "Interface for saving weight data to HealthKit",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "value",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "startDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "endDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "metadata",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        }
+      ]
+    },
+    {
+      "name": "HeightData",
+      "slug": "heightdata",
+      "docs": "Interface for saving height data to HealthKit",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "value",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "startDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "endDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "metadata",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        }
+      ]
+    },
+    {
+      "name": "EnergyData",
+      "slug": "energydata",
+      "docs": "Interface for saving active energy burned data to HealthKit",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "value",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "startDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "endDate",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "metadata",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [
+    {
+      "name": "Record",
+      "slug": "record",
+      "docs": "Construct a type with a set of properties K of type T",
+      "types": [
+        {
+          "text": "{\r\n    [P in K]: T;\r\n}",
+          "complexTypes": [
+            "K",
+            "T"
+          ]
+        }
+      ]
+    }
+  ],
+  "pluginConfigs": []
+}
