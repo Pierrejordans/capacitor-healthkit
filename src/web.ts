@@ -44,15 +44,15 @@ export class CapacitorHealthkitWeb
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async saveWeight(_weightData: WeightData): Promise<SaveResult> {
+  async saveWeight(_weightData: { weightData: WeightData }): Promise<SaveResult> {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async saveHeight(_heightData: HeightData): Promise<SaveResult> {
+  async saveHeight(_heightData: { heightData: HeightData }): Promise<SaveResult> {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async saveActiveEnergyBurned(_energyData: EnergyData): Promise<SaveResult> {
+  async saveActiveEnergyBurned(_energyData: { energyData: EnergyData }): Promise<SaveResult> {
     throw this.unimplemented('Not implemented on web.');
   }
 }

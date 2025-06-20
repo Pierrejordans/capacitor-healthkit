@@ -213,14 +213,14 @@ Checks if there is writing permission for multiple sample types. This function h
 ### saveWeight(...)
 
 ```typescript
-saveWeight(weightData: WeightData) => Promise<SaveResult>
+saveWeight(weightData: { weightData: WeightData; }) => Promise<SaveResult>
 ```
 
 Save weight data to HealthKit.
 
-| Param            | Type                                              | Description             |
-| ---------------- | ------------------------------------------------- | ----------------------- |
-| **`weightData`** | <code><a href="#weightdata">WeightData</a></code> | The weight data to save |
+| Param            | Type                                                               | Description             |
+| ---------------- | ------------------------------------------------------------------ | ----------------------- |
+| **`weightData`** | <code>{ weightData: <a href="#weightdata">WeightData</a>; }</code> | The weight data to save |
 
 **Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
 
@@ -230,14 +230,14 @@ Save weight data to HealthKit.
 ### saveHeight(...)
 
 ```typescript
-saveHeight(heightData: HeightData) => Promise<SaveResult>
+saveHeight(heightData: { heightData: HeightData; }) => Promise<SaveResult>
 ```
 
 Save height data to HealthKit.
 
-| Param            | Type                                              | Description             |
-| ---------------- | ------------------------------------------------- | ----------------------- |
-| **`heightData`** | <code><a href="#heightdata">HeightData</a></code> | The height data to save |
+| Param            | Type                                                               | Description             |
+| ---------------- | ------------------------------------------------------------------ | ----------------------- |
+| **`heightData`** | <code>{ heightData: <a href="#heightdata">HeightData</a>; }</code> | The height data to save |
 
 **Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
 
@@ -247,14 +247,14 @@ Save height data to HealthKit.
 ### saveActiveEnergyBurned(...)
 
 ```typescript
-saveActiveEnergyBurned(energyData: EnergyData) => Promise<SaveResult>
+saveActiveEnergyBurned(energyData: { energyData: EnergyData; }) => Promise<SaveResult>
 ```
 
 Save active energy burned data to HealthKit.
 
-| Param            | Type                                              | Description             |
-| ---------------- | ------------------------------------------------- | ----------------------- |
-| **`energyData`** | <code><a href="#energydata">EnergyData</a></code> | The energy data to save |
+| Param            | Type                                                               | Description             |
+| ---------------- | ------------------------------------------------------------------ | ----------------------- |
+| **`energyData`** | <code>{ energyData: <a href="#energydata">EnergyData</a>; }</code> | The energy data to save |
 
 **Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
 

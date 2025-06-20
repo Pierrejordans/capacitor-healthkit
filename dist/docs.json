@@ -134,12 +134,12 @@
       },
       {
         "name": "saveWeight",
-        "signature": "(weightData: WeightData) => Promise<SaveResult>",
+        "signature": "(weightData: { weightData: WeightData; }) => Promise<SaveResult>",
         "parameters": [
           {
             "name": "weightData",
             "docs": "The weight data to save",
-            "type": "WeightData"
+            "type": "{ weightData: WeightData; }"
           }
         ],
         "returns": "Promise<SaveResult>",
@@ -158,12 +158,12 @@
       },
       {
         "name": "saveHeight",
-        "signature": "(heightData: HeightData) => Promise<SaveResult>",
+        "signature": "(heightData: { heightData: HeightData; }) => Promise<SaveResult>",
         "parameters": [
           {
             "name": "heightData",
             "docs": "The height data to save",
-            "type": "HeightData"
+            "type": "{ heightData: HeightData; }"
           }
         ],
         "returns": "Promise<SaveResult>",
@@ -182,12 +182,12 @@
       },
       {
         "name": "saveActiveEnergyBurned",
-        "signature": "(energyData: EnergyData) => Promise<SaveResult>",
+        "signature": "(energyData: { energyData: EnergyData; }) => Promise<SaveResult>",
         "parameters": [
           {
             "name": "energyData",
             "docs": "The energy data to save",
-            "type": "EnergyData"
+            "type": "{ energyData: EnergyData; }"
           }
         ],
         "returns": "Promise<SaveResult>",

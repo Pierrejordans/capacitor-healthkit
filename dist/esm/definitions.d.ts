@@ -33,17 +33,23 @@ export interface CapacitorHealthkitPlugin {
      * Save weight data to HealthKit.
      * @param weightData The weight data to save
      */
-    saveWeight(weightData: WeightData): Promise<SaveResult>;
+    saveWeight(weightData: {
+        weightData: WeightData;
+    }): Promise<SaveResult>;
     /**
      * Save height data to HealthKit.
      * @param heightData The height data to save
      */
-    saveHeight(heightData: HeightData): Promise<SaveResult>;
+    saveHeight(heightData: {
+        heightData: HeightData;
+    }): Promise<SaveResult>;
     /**
      * Save active energy burned data to HealthKit.
      * @param energyData The energy data to save
      */
-    saveActiveEnergyBurned(energyData: EnergyData): Promise<SaveResult>;
+    saveActiveEnergyBurned(energyData: {
+        energyData: EnergyData;
+    }): Promise<SaveResult>;
 }
 /**
  * This interface is used for any results coming from HealthKit. It always has a count and the actual results.

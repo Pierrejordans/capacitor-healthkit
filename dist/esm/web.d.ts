@@ -7,7 +7,13 @@ export declare class CapacitorHealthkitWeb extends WebPlugin implements Capacito
     multipleQueryHKitSampleType(_queryOptions: MultipleQueryOptions): Promise<any>;
     isEditionAuthorized(_queryOptions: EditionQuery): Promise<void>;
     multipleIsEditionAuthorized(): Promise<void>;
-    saveWeight(_weightData: WeightData): Promise<SaveResult>;
-    saveHeight(_heightData: HeightData): Promise<SaveResult>;
-    saveActiveEnergyBurned(_energyData: EnergyData): Promise<SaveResult>;
+    saveWeight(_weightData: {
+        weightData: WeightData;
+    }): Promise<SaveResult>;
+    saveHeight(_heightData: {
+        heightData: HeightData;
+    }): Promise<SaveResult>;
+    saveActiveEnergyBurned(_energyData: {
+        energyData: EnergyData;
+    }): Promise<SaveResult>;
 }
