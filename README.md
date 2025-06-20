@@ -109,7 +109,11 @@ And you're all set ! :+1:
 * [`multipleQueryHKitSampleType(...)`](#multiplequeryhkitsampletype)
 * [`isEditionAuthorized(...)`](#iseditionauthorized)
 * [`multipleIsEditionAuthorized(...)`](#multipleiseditionauthorized)
+* [`saveWeight(...)`](#saveweight)
+* [`saveHeight(...)`](#saveheight)
+* [`saveActiveEnergyBurned(...)`](#saveactiveenergyburned)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -199,9 +203,60 @@ multipleIsEditionAuthorized(queryOptions: MultipleEditionQuery) => Promise<void>
 
 Checks if there is writing permission for multiple sample types. This function has not been tested.
 
-| Param              | Type                                                                  | Description                                                                |
-| ------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Param              | Type                                                                  | Description                                                                 |
+| ------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | **`queryOptions`** | <code><a href="#multipleeditionquery">MultipleEditionQuery</a></code> | defines the sampletypes for which you need to check for writing permission. |
+
+--------------------
+
+
+### saveWeight(...)
+
+```typescript
+saveWeight(weightData: WeightData) => Promise<SaveResult>
+```
+
+Save weight data to HealthKit.
+
+| Param            | Type                                              | Description             |
+| ---------------- | ------------------------------------------------- | ----------------------- |
+| **`weightData`** | <code><a href="#weightdata">WeightData</a></code> | The weight data to save |
+
+**Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
+
+--------------------
+
+
+### saveHeight(...)
+
+```typescript
+saveHeight(heightData: HeightData) => Promise<SaveResult>
+```
+
+Save height data to HealthKit.
+
+| Param            | Type                                              | Description             |
+| ---------------- | ------------------------------------------------- | ----------------------- |
+| **`heightData`** | <code><a href="#heightdata">HeightData</a></code> | The height data to save |
+
+**Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
+
+--------------------
+
+
+### saveActiveEnergyBurned(...)
+
+```typescript
+saveActiveEnergyBurned(energyData: EnergyData) => Promise<SaveResult>
+```
+
+Save active energy burned data to HealthKit.
+
+| Param            | Type                                              | Description             |
+| ---------------- | ------------------------------------------------- | ----------------------- |
+| **`energyData`** | <code><a href="#energydata">EnergyData</a></code> | The energy data to save |
+
+**Returns:** <code>Promise&lt;<a href="#saveresult">SaveResult</a>&gt;</code>
 
 --------------------
 
@@ -261,9 +316,66 @@ This is used for checking writing permissions.
 
 This is used for checking writing permissions.
 
-| Prop              | Type                   |
-| ----------------- | ---------------------- |
+| Prop              | Type                  |
+| ----------------- | --------------------- |
 | **`sampleNames`** | <code>string[]</code> |
+
+
+#### SaveResult
+
+Result of a save operation
+
+| Prop          | Type                 |
+| ------------- | -------------------- |
+| **`success`** | <code>boolean</code> |
+| **`uuid`**    | <code>string</code>  |
+| **`error`**   | <code>string</code>  |
+
+
+#### WeightData
+
+Interface for saving weight data to HealthKit
+
+| Prop            | Type                                                         |
+| --------------- | ------------------------------------------------------------ |
+| **`value`**     | <code>number</code>                                          |
+| **`startDate`** | <code>string</code>                                          |
+| **`endDate`**   | <code>string</code>                                          |
+| **`metadata`**  | <code><a href="#record">Record</a>&lt;string, any&gt;</code> |
+
+
+#### HeightData
+
+Interface for saving height data to HealthKit
+
+| Prop            | Type                                                         |
+| --------------- | ------------------------------------------------------------ |
+| **`value`**     | <code>number</code>                                          |
+| **`startDate`** | <code>string</code>                                          |
+| **`endDate`**   | <code>string</code>                                          |
+| **`metadata`**  | <code><a href="#record">Record</a>&lt;string, any&gt;</code> |
+
+
+#### EnergyData
+
+Interface for saving active energy burned data to HealthKit
+
+| Prop            | Type                                                         |
+| --------------- | ------------------------------------------------------------ |
+| **`value`**     | <code>number</code>                                          |
+| **`startDate`** | <code>string</code>                                          |
+| **`endDate`**   | <code>string</code>                                          |
+| **`metadata`**  | <code><a href="#record">Record</a>&lt;string, any&gt;</code> |
+
+
+### Type Aliases
+
+
+#### Record
+
+Construct a type with a set of properties K of type T
+
+<code>{ [P in K]: T; }</code>
 
 </docgen-api>
 

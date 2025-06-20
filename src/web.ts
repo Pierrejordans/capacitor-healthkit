@@ -7,6 +7,10 @@ import type {
   CapacitorHealthkitPlugin,
   MultipleQueryOptions,
   SingleQueryOptions,
+  WeightData,
+  HeightData,
+  EnergyData,
+  SaveResult,
 } from './definitions';
 
 export class CapacitorHealthkitWeb
@@ -37,6 +41,18 @@ export class CapacitorHealthkitWeb
   }
 
   async multipleIsEditionAuthorized(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
+  async saveWeight(_weightData: WeightData): Promise<SaveResult> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
+  async saveHeight(_heightData: HeightData): Promise<SaveResult> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
+  async saveActiveEnergyBurned(_energyData: EnergyData): Promise<SaveResult> {
     throw this.unimplemented('Not implemented on web.');
   }
 }

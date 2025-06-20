@@ -29,6 +29,21 @@ export interface CapacitorHealthkitPlugin {
    * @param queryOptions defines the sampletypes for which you need to check for writing permission.
    */
   multipleIsEditionAuthorized(queryOptions: MultipleEditionQuery): Promise<void>;
+  /**
+   * Save weight data to HealthKit.
+   * @param weightData The weight data to save
+   */
+  saveWeight(weightData: WeightData): Promise<SaveResult>;
+  /**
+   * Save height data to HealthKit.
+   * @param heightData The height data to save
+   */
+  saveHeight(heightData: HeightData): Promise<SaveResult>;
+  /**
+   * Save active energy burned data to HealthKit.
+   * @param energyData The energy data to save
+   */
+  saveActiveEnergyBurned(energyData: EnergyData): Promise<SaveResult>;
 }
 
 /**
@@ -153,6 +168,7 @@ export enum SampleNames {
   SLEEP_ANALYSIS = 'sleepAnalysis',
   WORKOUT_TYPE = 'workoutType',
   WEIGHT = 'weight',
+  HEIGHT = 'height',
   HEART_RATE = 'heartRate',
   RESTING_HEART_RATE = 'restingHeartRate',
   RESPIRATORY_RATE = 'respiratoryRate',
@@ -162,4 +178,43 @@ export enum SampleNames {
   BODY_TEMPERATURE = 'bodyTemperature',
   BLOOD_PRESSURE_SYSTOLIC = 'bloodPressureSystolic',
   BLOOD_PRESSURE_DIASTOLIC = 'bloodPressureDiastolic'
+}
+
+/**
+ * Interface for saving weight data to HealthKit
+ */
+export interface WeightData {
+  value: number; // Weight in kilograms
+  startDate: string; // ISO 8601 date string
+  endDate?: string; // Optional, defaults to startDate if not provided
+  metadata?: Record<string, any>; // Optional metadata
+}
+
+/**
+ * Interface for saving height data to HealthKit
+ */
+export interface HeightData {
+  value: number; // Height in centimeters
+  startDate: string; // ISO 8601 date string
+  endDate?: string; // Optional, defaults to startDate if not provided
+  metadata?: Record<string, any>; // Optional metadata
+}
+
+/**
+ * Interface for saving active energy burned data to HealthKit
+ */
+export interface EnergyData {
+  value: number; // Energy in kilocalories
+  startDate: string; // ISO 8601 date string
+  endDate: string; // ISO 8601 date string (required for energy data)
+  metadata?: Record<string, any>; // Optional metadata
+}
+
+/**
+ * Result of a save operation
+ */
+export interface SaveResult {
+  success: boolean;
+  uuid?: string; // UUID of the saved sample
+  error?: string; // Error message if save failed
 }

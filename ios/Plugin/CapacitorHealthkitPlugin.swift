@@ -58,6 +58,8 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
             return HKWorkoutType.workoutType()
         case "weight":
             return HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
+        case "height":
+            return HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
         case "heartRate":
             return HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!
         case "restingHeartRate":
@@ -104,6 +106,8 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
                 types.insert(HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodGlucose)!)
             case "weight":
                 types.insert(HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!)
+            case "height":
+                types.insert(HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!)
             case "heartRate":
                 types.insert(HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!)
             case "restingHeartRate":
@@ -676,5 +680,113 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
             ]))
         }
         healthStore.execute(query)
+    }
+    
+    // MARK: - Write Methods
+    
+    @objc func saveWeight(_ call: CAPPluginCall) {
+        guard let weightData = call.options["weightData"] as? [String: Any] else {
+            return call.reject("Must provide weightData")
+        }
+        
+        guard let value = weightData["value"] as? Double else {
+            return call.reject("Must provide value in weightData")
+        }
+        
+        guard let startDateString = weightData["startDate"] as? String else {
+            return call.reject("Must provide startDate in weightData")
+        }
+        
+        let startDate = getDateFromString(inputDate: startDateString)
+        let endDate = weightData["endDate"] as? String != nil ? getDateFromString(inputDate: weightData["endDate"] as! String) : startDate
+        let metadata = weightData["metadata"] as? [String: Any]
+        
+        // Create weight quantity sample
+        let weightType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
+        let weightQuantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: value)
+        let weightSample = HKQuantitySample(type: weightType, quantity: weightQuantity, start: startDate, end: endDate, metadata: metadata)
+        
+        healthStore.save(weightSample) { success, error in
+            if success {
+                call.resolve([
+                    "success": true,
+                    "uuid": weightSample.uuid.uuidString
+                ])
+            } else {
+                call.reject("Failed to save weight data: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    @objc func saveHeight(_ call: CAPPluginCall) {
+        guard let heightData = call.options["heightData"] as? [String: Any] else {
+            return call.reject("Must provide heightData")
+        }
+        
+        guard let value = heightData["value"] as? Double else {
+            return call.reject("Must provide value in heightData")
+        }
+        
+        guard let startDateString = heightData["startDate"] as? String else {
+            return call.reject("Must provide startDate in heightData")
+        }
+        
+        let startDate = getDateFromString(inputDate: startDateString)
+        let endDate = heightData["endDate"] as? String != nil ? getDateFromString(inputDate: heightData["endDate"] as! String) : startDate
+        let metadata = heightData["metadata"] as? [String: Any]
+        
+        // Create height quantity sample (convert cm to meters for HealthKit)
+        let heightType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+        let heightQuantity = HKQuantity(unit: HKUnit.meterUnit(with: .centi), doubleValue: value)
+        let heightSample = HKQuantitySample(type: heightType, quantity: heightQuantity, start: startDate, end: endDate, metadata: metadata)
+        
+        healthStore.save(heightSample) { success, error in
+            if success {
+                call.resolve([
+                    "success": true,
+                    "uuid": heightSample.uuid.uuidString
+                ])
+            } else {
+                call.reject("Failed to save height data: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    @objc func saveActiveEnergyBurned(_ call: CAPPluginCall) {
+        guard let energyData = call.options["energyData"] as? [String: Any] else {
+            return call.reject("Must provide energyData")
+        }
+        
+        guard let value = energyData["value"] as? Double else {
+            return call.reject("Must provide value in energyData")
+        }
+        
+        guard let startDateString = energyData["startDate"] as? String else {
+            return call.reject("Must provide startDate in energyData")
+        }
+        
+        guard let endDateString = energyData["endDate"] as? String else {
+            return call.reject("Must provide endDate in energyData")
+        }
+        
+        let startDate = getDateFromString(inputDate: startDateString)
+        let endDate = getDateFromString(inputDate: endDateString)
+        let metadata = energyData["metadata"] as? [String: Any]
+        
+        // Create active energy burned quantity sample
+        let energyType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
+        let energyQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: value)
+        let energySample = HKQuantitySample(type: energyType, quantity: energyQuantity, start: startDate, end: endDate, metadata: metadata)
+        
+        healthStore.save(energySample) { success, error in
+            if success {
+                call.resolve([
+                    "success": true,
+                    "uuid": energySample.uuid.uuidString
+                ])
+            } else {
+                call.reject("Failed to save energy data: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
     }
 }

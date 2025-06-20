@@ -10,4 +10,7 @@ CAP_PLUGIN(CapacitorHealthkitPlugin, "CapacitorHealthkit",
            CAP_PLUGIN_METHOD(multipleQueryHKitSampleType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isEditionAuthorized, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(multipleIsEditionAuthorized, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(saveWeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(saveHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(saveActiveEnergyBurned, CAPPluginReturnPromise);
 )
